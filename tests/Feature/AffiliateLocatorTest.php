@@ -43,7 +43,7 @@ class AffiliateLocatorTest extends TestCase
     {
         $this->expectErrorMessage('Missing latitude,longitude from {"latitude":null,"longitude":1}');
 
-        Artisan::call('locate:within', ['distance' => '1ft', '--longitude' => 1]);
+        Artisan::call('locate:within', ['distance' => '1FT', '--longitude' => 1]);
     }
 
     public function test_handles_missing_coordinates()

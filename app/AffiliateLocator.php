@@ -130,7 +130,7 @@ class AffiliateLocator extends Collection
     private function convertDistanceString(string $distanceString)
     {
         $distance = intval($distanceString);
-        $measurement = str_replace($distance, '', $distanceString);
+        $measurement = strtolower(str_replace($distance, '', $distanceString));
 
         if (!$measurement || !isset(self::MEASUREMENTS[$measurement])) {
             $measurements = implode(",", array_keys(self::MEASUREMENTS));
