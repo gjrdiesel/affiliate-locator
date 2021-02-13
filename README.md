@@ -1,13 +1,34 @@
-# dev-codetest
-KaxMedia Dev Code Test
+# Affiliate locator
 
-We have a shortlist of affiliate contact records in a text file (affiliates.txt) -- one affiliate per line, JSON-encoded. We want to invite any affiliate that lives within 100km of our Dublin office for some food and drinks. Write a program that will read the full list of affiliates and output the name and affiliate ids of matching affiliates (within 100km), sorted by Affiliate ID (ascending).
+Take a set of affiliate contact records from a text file or string and filter them down to your criteria.
 
-You can use the first formula from this [Wikipedia article](https://en.wikipedia.org/wiki/Great-circle_distance) to calculate distance. Don't forget, you'll need to convert degrees to radians.
+Artisan command:
 
-The GPS coordinates for our Dublin office are 53.3340285, -6.2535495.
+```bash
+php artisan locate:within 100km --latitude=53.33 --longitude=-6.25
+```
 
-You can find the affiliate list in this repository called affiliates.txt.
+Code example usage:
 
-Please don’t forget, your code should be production ready, clean and tested!
+```php
+use \Facades\App\AffiliateLocator;
 
+// Returns a collection of affiliates that are within 10km of default coordinates (i.e. config/kax-media.php office)
+AffiliateLocator::loadFile(base_path('affiliates.txt'))
+    ->within('10km');
+    
+// Switch units
+AffiliateLocator::loadFile(base_path('affiliates.txt'))
+    ->within('10mi');
+    
+// Second parameter accepts an array of coordinates
+AffiliateLocator::loadFile(base_path('affiliates.txt'))
+    ->within('10km',[
+        'latitude' => 53.3340285,
+        'longitude' => -6.2535495
+    ]);
+```
+
+## Testing
+
+See test coverage [tests/Feature/AffiliateLocatorTest.php](tests/Feature/AffiliateLocatorTest.php)
