@@ -53,3 +53,7 @@ AffiliateLocator::loadFile(base_path('affiliates.txt'))
 ## Testing
 
 See test coverage [tests/Feature/AffiliateLocatorTest.php](tests/Feature/AffiliateLocatorTest.php)
+
+## Known issues
+
+See https://github.com/gjrdiesel/affiliate-locator/issues/1 for a list of known issues 😅
