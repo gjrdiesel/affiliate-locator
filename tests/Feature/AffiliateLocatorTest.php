@@ -44,7 +44,6 @@ class AffiliateLocatorTest extends TestCase
         $this->expectErrorMessage('Missing latitude,longitude from {"latitude":null,"longitude":1}');
 
         Artisan::call('locate:within', ['distance' => '1ft', '--longitude' => 1]);
-        $this->assertEquals("No affiliates found within 1ft\n", Artisan::output());
     }
 
     public function test_handles_missing_coordinates()
